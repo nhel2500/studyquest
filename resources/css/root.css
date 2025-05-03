@@ -1,0 +1,61 @@
+/* resources/css/root.css */
+
+:root {
+    /* Base colors */
+    --color-background: 255 255 255;
+    --color-foreground: 10 10 10;
+    
+    /* Component colors */
+    --color-card: 255 255 255;
+    --color-card-foreground: 10 10 10;
+    
+    /* UI Colors */
+    --color-primary: 70 102 198;
+    --color-primary-foreground: 255 255 255;
+    
+    --color-secondary: 113 113 122;
+    --color-secondary-foreground: 250 250 250;
+    
+    --color-accent: 245 158 11;
+    --color-accent-foreground: 255 255 255;
+    
+    --color-muted: 241 245 249;
+    --color-muted-foreground: 100 116 139;
+    
+    /* Convert to rgb format for opacity control */
+    --color-background-rgb: var(--color-background);
+    --color-foreground-rgb: var(--color-foreground);
+    --color-card-rgb: var(--color-card);
+    --color-primary-rgb: var(--color-primary);
+    --color-secondary-rgb: var(--color-secondary);
+    --color-accent-rgb: var(--color-accent);
+    --color-muted-rgb: var(--color-muted);
+  }
+  
+  .dark {
+    /* Base colors */
+    --color-background: 15 23 42;
+    --color-foreground: 241 245 249;
+    
+    /* Component colors */
+    --color-card: 30 41 59;
+    --color-card-foreground: 241 245 249;
+    
+    /* UI Colors - adjust for dark mode */
+    --color-primary: 93 127 218;
+    --color-primary-foreground: 255 255 255;
+    
+    --color-secondary: 148 163 184;
+    --color-secondary-foreground: 15 23 42;
+    
+    --color-accent: 245 158 11;
+    --color-accent-foreground: 255 255 255;
+    
+    --color-muted: 51 65 85;
+    --color-muted-foreground: 203 213 225;
+  }
+  
+  body {
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+  }

@@ -1,0 +1,362 @@
+@import 'tailwindcss';
+@import './trivia-game-styles.css';
+@plugin 'tailwindcss-animate';
+
+@source "../views";
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-sans:
+        'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+:root {
+    /* StudyQuest Theme - Light Mode */
+    --background: #09071A;
+    --foreground: #ffffff;
+    --card: #130C2E;
+    --card-foreground: #ffffff;
+    --popover: #09071A;
+    --popover-foreground: #ffffff;
+    --primary: #7B49F2;
+    --primary-foreground: #ffffff;
+    --secondary: #1F1646;
+    --secondary-foreground: #ffffff;
+    --muted: #1F1646;
+    --muted-foreground: #9388BD;
+    --accent: #9A45FF;
+    --accent-foreground: #ffffff;
+    --destructive: #FF5757;
+    --destructive-foreground: #ffffff;
+    --border: #1F1646;
+    --input: #130C2E;
+    --ring: #7B49F2;
+    --chart-1: #7B49F2;
+    --chart-2: #45D6FF;
+    --chart-3: #FF9645;
+    --chart-4: #FF45D6;
+    --chart-5: #45FF96;
+    --radius: 0.75rem;
+    --sidebar: #0E0929;
+    --sidebar-foreground: #ffffff;
+    --sidebar-primary: #7B49F2;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #1F1646;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: #1F1646;
+    --sidebar-ring: #7B49F2;
+}
+
+.dark {
+    /* StudyQuest Theme - Dark Mode (same as root since we're forcing dark) */
+    --background: #09071A;
+    --foreground: #ffffff;
+    --card: #130C2E;
+    --card-foreground: #ffffff;
+    --popover: #09071A;
+    --popover-foreground: #ffffff;
+    --primary: #7B49F2;
+    --primary-foreground: #ffffff;
+    --secondary: #1F1646;
+    --secondary-foreground: #ffffff;
+    --muted: #1F1646;
+    --muted-foreground: #9388BD;
+    --accent: #9A45FF;
+    --accent-foreground: #ffffff;
+    --destructive: #FF5757;
+    --destructive-foreground: #ffffff;
+    --border: #1F1646;
+    --input: #130C2E;
+    --ring: #7B49F2;
+    --chart-1: #7B49F2;
+    --chart-2: #45D6FF;
+    --chart-3: #FF9645;
+    --chart-4: #FF45D6;
+    --chart-5: #45FF96;
+    --sidebar: #0E0929;
+    --sidebar-foreground: #ffffff;
+    --sidebar-primary: #7B49F2;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #1F1646;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: #1F1646;
+    --sidebar-ring: #7B49F2;
+}
+
+/* StudyQuest specific components */
+.studyquest-header {
+    @apply bg-background px-6 py-4 flex items-center justify-between;
+}
+
+.studyquest-logo {
+    @apply flex items-center gap-2 text-primary font-bold text-xl;
+}
+
+.studyquest-nav {
+    @apply flex items-center gap-6;
+}
+
+.studyquest-nav-link {
+    @apply text-foreground hover:text-primary transition-colors;
+}
+
+.studyquest-button-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-2 rounded-full transition-colors;
+}
+
+.studyquest-button-secondary {
+    @apply bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-2 rounded-full transition-colors;
+}
+
+.studyquest-card {
+    @apply bg-card text-card-foreground p-6 rounded-xl border border-border;
+}
+
+.studyquest-card-title {
+    @apply text-xl font-bold mb-4;
+}
+
+.studyquest-section {
+    @apply py-16;
+}
+
+.studyquest-section-title {
+    @apply text-3xl font-bold text-center mb-6;
+}
+
+.studyquest-section-subtitle {
+    @apply text-xl text-center text-muted-foreground mb-12;
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        background-color: #09071A !important; /* Deep pure black-purple */
+        color: white;
+    }
+
+    /* Force all main content areas to use the dark background */
+    body, 
+    main, 
+    .app-container, 
+    #app,
+    #root,
+    .root,
+    .main-content {
+        background-color: #09071A !important;
+    }
+}
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-bold;
+    }
+
+    /* Add custom scrollbar for the gaming theme */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-muted;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-primary rounded-full;
+    }
+
+
+/* Login page specific styles */
+.login-container {
+    background-color: #09071A !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    background-color: #130C2E;
+    border-radius: var(--radius);
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    border: 1px solid #1F1646;
+}
+
+.login-input {
+    background-color: #0F0A26 !important;
+    border: 1px solid #1F1646;
+    color: white !important;
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.login-button {
+    background-color: #7B49F2 !important;
+    color: white !important;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: #6A3DD9 !important;
+}
+
+/* Dashboard specific styles */
+.dashboard-container {
+    background-color: #09071A !important;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background-color: #0E0929 !important;
+    border-right: 1px solid #1F1646;
+    min-height: 100vh;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    color: #9388BD;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.sidebar-link:hover, 
+.sidebar-link.active {
+    background-color: #1F1646;
+    color: white;
+}
+
+.dashboard-card {
+    background-color: #130C2E;
+    border-radius: var(--radius);
+    border: 1px solid #1F1646;
+    overflow: hidden;
+}
+
+/* Override any other background colors that might be applied */
+html, 
+body, 
+.app-root, 
+.app-container, 
+#app, 
+#root, 
+main, 
+.main-wrapper {
+    background-color: #09071A !important;
+}
+
+/* Dashboard card with diagonal lines pattern */
+.dashboard-card-pattern {
+    background-color: #130C2E;
+    background-image: linear-gradient(45deg, #1F1646 25%, transparent 25%, transparent 75%, #1F1646 75%, #1F1646), 
+                      linear-gradient(45deg, #1F1646 25%, transparent 25%, transparent 75%, #1F1646 75%, #1F1646);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    border-radius: var(--radius);
+    border: 1px solid #1F1646;
+}
+
+.join-community h2 {
+    @apply text-4xl font-bold text-center mb-4;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.join-community p {
+    @apply text-xl text-center text-foreground/80 mb-12;
+}
+
+/* Features grid */
+.features-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+/* Community features section */
+.community-features {
+    @apply py-12 bg-card;
+}
+
+.community-features h2 {
+    @apply text-3xl font-bold text-center mb-12 text-primary;
+}

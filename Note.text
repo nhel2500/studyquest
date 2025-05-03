@@ -1,0 +1,5 @@
+---------this is hwo to inside import "@/components/ui/tabs" -------------
+npm install @radix-ui/react-tabs
+# or
+yarn add @radix-ui/react-tabs
+
